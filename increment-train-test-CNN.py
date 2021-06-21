@@ -116,7 +116,7 @@ for i in range(365*24,len(dataset)):
 scale, new_data = preprocessing(dataset)
 trainx,trainy, testx, testy = spliting(0.8,look,new_data)
 mdel = keras.models.load_model("incremental_CNN")
-mdel = fitting(trainx, trainy, 10, batch,mdel)
+mdel = fitting(trainx, trainy, epoch, batch, mdel)
 mdel.save("incremental_CNN")
 testy, testpredict, trainpredict = predicion(mdel,trainx,testx,trainy,testy,scale)
 score = RMSE(testy,testpredict)
