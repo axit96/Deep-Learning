@@ -73,11 +73,9 @@ def ploting(look_back, trainPredict, testPredict,data):
 	plt.title("Relative Humidity \n Duration: Jan-2016 to Jan-2021 \n Algorithm:LSTM")
 	return plt
 
-dataframe = read_csv('interpolated_complete_hourly_data.csv', usecols=[5])
+dataframe = read_csv("....Privide file name and path....")
 dataset = dataframe.values
 dataset = dataset.astype('float64')
-print(dataset)
-print(len(dataset))
 
 look = 12
 epoch = 100
@@ -87,14 +85,16 @@ for i in range(365*24,len(dataset)):
 	scale, new_data = preprocessing(dataset[:i]) 
 	trainx,trainy, testx, testy = spliting(0.8,look,new_data)
 	mdel = training(trainx, trainy, epoch, batch)
+	mdel.save("incremental_LSTM")
 	print("1st year")
 	print(i)
 	while(i<len(dataset)):
-		i = i+ 60*24
-		scale,new_data = preprocessing(dataset[:i])
+		scale,new_data = preprocessing(dataset[i:i+60*24])
 		trainx,trainy, testx, testy = spliting(0.8,look,new_data) 
+		mdel = keras.models.load_model("incremental LSTM")
 		mdel = training(trainx, trainy, epoch, batch)
 		testy, testpredict, trainpredict = predicion(mdel,trainx,testx,trainy,testy,scale)
+		mdel = mdel.save("incremental LSTM")
 		score = RMSE(testy,testpredict)
 		print(score)
 		i = i + 60*24
@@ -102,5 +102,13 @@ for i in range(365*24,len(dataset)):
 		print(i)
 	break
 
+scale, new_data = preprocessing(dataset)
+trainx, trainy, testx, testy = spliting(0.8,look,new_data)
+mdel = keras.models.load_model("incremental LSTM")
+mdel = training(trainx, trainy, epoch, batch)
+testy, testpredict, trainpredict = prediction(mdel, trainx, testx, trainy, testy, scale)
+mdel = mdel.save("incremental LSTM")
+score = RMSE(testy, testpredict)
+	
 plt = ploting(look,trainpredict,testpredict,dataset)
 plt.show()
