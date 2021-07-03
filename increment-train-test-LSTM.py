@@ -73,7 +73,7 @@ def ploting(look_back, trainPredict, testPredict,data):
 	plt.title("enter parameter name \n Duration: enter duration of dataset \n Algorithm:LSTM")
 	return plt
 
-dataframe = read_csv("....Privide file name with path....")
+dataframe = read_csv("....Privide file name with path....",usecols=["enter column number"])
 dataset = dataframe.values
 dataset = dataset.astype('float64')
 
