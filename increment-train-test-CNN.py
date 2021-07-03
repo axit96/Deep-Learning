@@ -77,12 +77,12 @@ def ploting(look_back, trainPredict, testPredict,data):
 	plt.gca().set_facecolor((1.0, 0.992, .816))
 	plt.plot(data, 'b')
 	plt.plot(testPredictPlot, 'r')
-	plt.ylabel("Temperature")
+	plt.ylabel("Enter Parameter name")
 	plt.xlabel("No of Samples")
-	plt.title("Temperature \n Duration: Jan-2016 to Jan-2021 \n Algorithm:CNN")
+	plt.title("Enter Parameter name \n Duration: enter dataset duration \n Algorithm:CNN")
 	return plt
 
-dataframe = read_csv('interpolated_complete_hourly_data.csv', usecols=[2])
+dataframe = read_csv('file name with path', usecols=["column number"])
 dataset = dataframe.values
 dataset = dataset.astype('float64')
 print(dataset)
