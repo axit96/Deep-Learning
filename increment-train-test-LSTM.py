@@ -68,12 +68,12 @@ def ploting(look_back, trainPredict, testPredict,data):
 	plt.gca().set_facecolor((1.0, 0.992, .816))
 	plt.plot(data, 'b')
 	plt.plot(testPredictPlot, 'r')
-	plt.ylabel("Relative Humidity")
+	plt.ylabel("enter parameter name")
 	plt.xlabel("No of Samples")
-	plt.title("Relative Humidity \n Duration: Jan-2016 to Jan-2021 \n Algorithm:LSTM")
+	plt.title("enter parameter name \n Duration: enter duration of dataset \n Algorithm:LSTM")
 	return plt
 
-dataframe = read_csv("....Privide file name and path....")
+dataframe = read_csv("....Privide file name with path....")
 dataset = dataframe.values
 dataset = dataset.astype('float64')
 
